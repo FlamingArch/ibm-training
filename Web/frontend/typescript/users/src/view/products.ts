@@ -20,8 +20,12 @@ class ProductsView {
             <h4 class = "card-title">${product.productName}</h4>
             <h4 class = "card-title">${product.price}</h4>
             <h3 class = "card-title">${product.starRating}</h3>
-            <button class="btn btn-primary">Edit</button>
-            <button class="btn btn-primary">Delete</button>
+            <a href="#" class="edit card-link" data-id="${product.productId}">
+            <i class="fa fa-pencil"></i>
+            </a>
+            <a href="#" class="delete card-link" data-id="${product.productId}">
+            <i class="fa fa-remove"></i>
+            </a>
           </div>
         </div>`
     });
