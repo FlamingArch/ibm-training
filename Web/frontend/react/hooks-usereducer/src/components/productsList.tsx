@@ -1,4 +1,4 @@
-import { useState, useReducer } from "react"
+import { useState, useReducer, useEffect } from "react"
 import data from "../data/products"
 import IProduct from "../model/product"
 import Rating from "./rating"
@@ -28,6 +28,11 @@ const ProductsList = () => {
     const [products, dispatch] = useReducer(reducer, data)
     const [filteredProducts, setFilteredProducts] = useState<IProduct[]>(products)
     const [show, setShow] = useState(false)
+
+    useEffect(() => {
+        setFilteredProducts(products)
+    }, [products])
+
 
     const title = "Products App"
 
