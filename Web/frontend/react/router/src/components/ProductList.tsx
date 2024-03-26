@@ -1,11 +1,10 @@
-import { useState, useEffect, useCallback, useContext } from "react";
+import { useState, useContext } from "react";
 import IProduct from "../model/product";
 import Rating from "./Rating";
-import httpClient from "../apiClient/httpClient";
 import { ProductContext } from "../context/productContext";
 
 const ProductsList = () => {
-  const { products, url } = useContext(ProductContext); //OBJECT DESTRUCTURING
+  const { products } = useContext(ProductContext); //OBJECT DESTRUCTURING
   // We are returning a React-TSX function component == JSX
   // setProducts --> dispatch function.
 
@@ -15,7 +14,7 @@ const ProductsList = () => {
   const [show, setShow] = useState(false);
   const title = "Products App";
 
-  const showorHideImage = () => {
+  const showOrHideImage = () => {
     setShow(!show);
   };
 
@@ -73,7 +72,7 @@ const ProductsList = () => {
                   <th>
                     <button
                       className="btn btn-primary"
-                      onClick={showorHideImage}
+                      onClick={showOrHideImage}
                     >
                       {show ? "Hide " : "Show "} Image
                     </button>
@@ -86,7 +85,7 @@ const ProductsList = () => {
                 </tr>
               </thead>
               <tbody>
-                {products.map((product: IProduct) => (
+                {filterProducts.map((product: IProduct) => (
                   <tr key={product.productId}>
                     <td>
                       <img

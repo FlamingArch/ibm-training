@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 import './App.css';
-import ProductsList from './components/ProductList';
-import { ProductProvider } from './context/productContext';
 
-function App({ children }: { children: React.ReactNode }) {
+type AppProps = { children: React.ReactNode }
+
+const App: React.FC<AppProps> = ({ children }) => {
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
+      <nav className="navbar navbar-expand-lg bg-body-tertiary" style={{ marginBottom: `2rem` }}>
         <div className="container-fluid">
           <a className="navbar-brand" href="#">Navbar</a>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,6 +28,10 @@ function App({ children }: { children: React.ReactNode }) {
           </div>
         </div>
       </nav>
+
+      <div className='container'>
+        {children}
+      </div>
 
       <footer className='mt-5 p-3 text-center bg-light'>
         Products @copy;
