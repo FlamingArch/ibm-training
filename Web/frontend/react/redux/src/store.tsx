@@ -1,4 +1,4 @@
-import { State, create } from "zustand";
+import { create } from "zustand";
 
 type StateObject = {
   isSidebarOpen: boolean
