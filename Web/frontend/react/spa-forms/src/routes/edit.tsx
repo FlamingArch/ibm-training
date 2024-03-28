@@ -12,12 +12,8 @@ type Props = {
 }
 
 export default function PageEdit({ onSave }: Props) {
-  const { register, handleSubmit, formState: { errors, isSubmitting, isSubmitSuccessful } } = useForm<NewProductData>()
+  const { register, getValues, setValue, handleSubmit, formState: { errors, isSubmitting, isSubmitSuccessful } } = useForm<NewProductData>()
   const [product, setProduct] = useState<IProduct>({} as IProduct) //{} initializing with an empty oject
-
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState("")
-  const [starRating, setStarRating] = useState("")
 
   const { id } = useParams<string>()// react hook that will help us to read path parameter... it will give the id
 
@@ -36,9 +32,9 @@ export default function PageEdit({ onSave }: Props) {
 
   useEffect(() => {
     if (product) {
-      setName(product.productName)
-      setPrice(`${product.price}`)
-      setStarRating(`${product.starRating}`)
+      setValue("productName", product.productName)
+      setValue("price", product.price)
+      setValue("starRating", product.starRating)
     } else {
       console.log("No Product Found")
     }
@@ -60,7 +56,7 @@ export default function PageEdit({ onSave }: Props) {
               type="text"
               aria-label="Amount (to the nearest dollar)"
               id="productName"
-              value={name}
+              // value={name}
               className={`${getEditorStyle(errors.productName)} form-control`}
               {...register('productName', { required: "You must register a Product Name" })}
             />
@@ -79,7 +75,7 @@ export default function PageEdit({ onSave }: Props) {
               type="text"
               aria-label="Amount (to the nearest dollar)"
               id="price"
-              value={price}
+              // value={price}
               className={`${getEditorStyle(errors.price)} form-control`}
               {...register('price', { required: "You must register a Product price" })}
             />
@@ -97,15 +93,17 @@ export default function PageEdit({ onSave }: Props) {
               type="text"
               aria-label="Amount (to the nearest dollar)"
               id="starRating"
-              value={starRating}
+              // value={starRating}
               className={`${getEditorStyle(errors.starRating)} form-control`}
               {...register('starRating', { required: "You must register a Product Name" })}
             />
-            <span className="input-group-text"><Rating rating={parseInt(starRating)} /></span>
+            <span className="input-group-text"><Rating rating={getValues("starRating")} /></span>
           </div>
         </div>
         <ValidationError fieldError={errors.starRating} />
       </div>
+
+      <input type="submit" className="btn btn-primary" />
     </form >
   )
 }

@@ -2,6 +2,7 @@ export type NewProductData = {
   productName: string
   price: number
   starRating: number
+  productId: number
 }
 
 export type ProductData = {
