@@ -15,32 +15,19 @@ const ProductsList = () => {
     const dispatch = useDispatch<AppDispatch>()
 
     useEffect(() => {
-        dispatch(fetchProducts()) //this will call te slice fetch products
+        dispatch(fetchProducts("")) //this will call te slice fetch products
     }, [])
 
     const title = "Products App"
     const [show, setShow] = useState(false)
     const [filterKey, setFilterKey] = useState("")
 
+    const filteredProducts = filterKey === "" ? products : products.filter(p => p.productName.includes(filterKey))
+
 
     const showOrHideImage = () => {
         setShow(!show)
     }
-
-    // const searchByName = (e:React.ChangeEvent<HTMLInputElement>) => {
-    //     setFilterKey(e.target.value.toLocaleLowerCase())
-    // }
-
-    // //useCallback memoizes the function hence faster and more efficient for async operations, the cb fn can be made async
-    // // const getProducts = useCallback(async ()=>{
-    // //     const response = await httpClient.get('http://localhost:3000/products')
-    // //     setProducts(response)
-    // //     setFilteredProducts(response)
-    // // },[])
-
-    // useEffect(()=>{ //the callback function in useeffect parameter cannot be made async
-    //     setFilteredProducts(products.filter(p=>p.productName.toLocaleLowerCase().includes(filterKey)))
-    // },[products,filterKey])
 
     return (
         <div className='card'>
@@ -72,7 +59,7 @@ const ProductsList = () => {
                         </thead>
                         <tbody>
 
-                            {products.map((product: IProduct) =>
+                            {filteredProducts.map((product: IProduct) =>
 
                                 <tr key={product.productId}>
                                     <td>

@@ -10,7 +10,7 @@ export const ProductDetails: FC<any> = () => {
     const [product, setProduct] = useState<IProduct>({} as IProduct) //{} initializing with an empty oject
 
     const getProductById = useCallback(async () => {
-        const response = await httpClient.getById('http://localhost:3000/products', Number(id)) //converting id to number
+        const response = await httpClient.getById('http://localhost:3000/products', Number(id))
         setProduct(response)
 
     }, [])

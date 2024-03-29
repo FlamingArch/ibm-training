@@ -4,27 +4,31 @@ import httpClient from "../apiClient/httpClient";
 
 
 export const fetchProducts = //fetching the data from client here
-    createAsyncThunk<IProduct[]>("products/list", async () =>   //createAsyncThunk takes two parameters, string and a callback
-        await httpClient.get(`http://localhost:3000/products`)
+    createAsyncThunk<IProduct[], string>("products/list", async (searchKey: string) => await httpClient.get(`http://localhost:3000/products?productName=`)
     )
 
 type AppStateType = {
     products: IProduct[]
+    searchKey: string
     error: boolean
 }
 
 const initialState: AppStateType = { //if anything goes wrong the error will be used
     products: [],
+    searchKey: "",
     error: false
 }
 
-export const productsListSlice = createSlice({ //this slice is for productsList
+export const productsListSlice = createSlice({ //this slice is for productpsList
     name: 'products',
     initialState: initialState,
     reducers: {
 
     },
     extraReducers: (builder) => { //when we are performing async operations and we wanna know the promise states we use extraReducers
+        // setSearchKey: (state, action) => {
+        //     state.searchKey = action.payload
+        // }
         builder.addCase(fetchProducts.fulfilled, (state, action) => {//in the current the products will be empty array
             state.products = action.payload
         })
