@@ -2,17 +2,21 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProductsListComponent } from './products-list/products-list.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { ProductEditComponent } from './product-edit/product-edit.component';
 
 const routes: Routes = [
 
   {
-    path : 'products' , component : ProductsListComponent , title : 'ProductsList'
+    path: 'products', component: ProductsListComponent, title: 'ProductsList'
   },
   {
-    path : 'products/:id' , component : ProductDetailsComponent , title : 'ProductDetails'
+    path: 'products/:id', component: ProductDetailsComponent, title: 'ProductDetails'
   },
   {
-    path : 'welcome' , component : ProductsListComponent , title : 'Welcome'
+    path: 'products/:id', component: ProductEditComponent, title: 'ProductEdit'
+  },
+  {
+    path: 'welcome', component: ProductsListComponent, title: 'Welcome'
   }
 ];
 
