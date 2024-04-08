@@ -10,7 +10,7 @@ export enum IssuePriority {
 }
 
 export interface Issue {
-  issueNo: number;
+  issueNo: number | string;
   type: IssueType;
   title: string;
   description: string;

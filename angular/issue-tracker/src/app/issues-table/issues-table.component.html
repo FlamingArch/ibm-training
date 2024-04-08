@@ -1,3 +1,6 @@
+<mat-toolbar>
+  <span>Issue Tracker</span>
+</mat-toolbar>
 <table mat-table [dataSource]="issues">
   <ng-container matColumnDef="issueNo">
     <th mat-header-cell *matHeaderCellDef>Issue No</th>
@@ -22,6 +25,7 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
-<button mat-fab>
+<button routerLink="add" mat-fab>
   <mat-icon>add</mat-icon>
 </button>
+<router-outlet />

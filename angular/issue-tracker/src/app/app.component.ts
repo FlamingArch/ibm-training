@@ -6,11 +6,7 @@ import { IssuesTableComponent } from './issues-table/issues-table.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [
-    RouterOutlet,
-    MatToolbar,
-    IssuesTableComponent,
-  ],
+  imports: [RouterOutlet, IssuesTableComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
