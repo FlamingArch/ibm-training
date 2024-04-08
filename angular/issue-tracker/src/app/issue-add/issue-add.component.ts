@@ -39,4 +39,7 @@ export class IssueAddComponent {
     { value: IssueType.Bug, viewValue: 'Bug' },
     { value: IssueType.Documentation, viewValue: 'Documentation' },
   ];
+  submit() {
+    console.log(this.newIssue);
+  }
 }

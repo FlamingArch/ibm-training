@@ -16,12 +16,24 @@
     >
       <mat-icon>clear_all</mat-icon>
     </button>
+    <button
+      mat-icon-button
+      class="example-icon favorite-icon"
+      aria-label="Example icon-button with heart icon"
+      (click)="submit()"
+    >
+      <mat-icon>add</mat-icon>
+    </button>
   </mat-toolbar>
 
   <form class="example-form">
     <mat-form-field class="example-full-width">
       <mat-label>Title</mat-label>
-      <input matInput placeholder="A brief title of the Issue" value="" />
+      <input
+        matInput
+        placeholder="A brief title of the Issue"
+        [value]="newIssue.title"
+      />
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
@@ -29,20 +41,27 @@
       <textarea
         matInput
         placeholder="A detailed description of the Issue"
+        [value]="newIssue.description"
       ></textarea>
     </mat-form-field>
 
-    <mat-label>Priority</mat-label>
-    <mat-radio-group aria-label="Select an option" class="example-full-width">
-      <mat-radio-button value="1">Low</mat-radio-button>
-      <mat-radio-button value="2">High</mat-radio-button>
-    </mat-radio-group>
+    <div>
+      <mat-label>Priority</mat-label>
+      <mat-radio-group
+        aria-label="Select an option"
+        class="example-full-width"
+        [value]="newIssue.priority"
+      >
+        <mat-radio-button value="1">Low</mat-radio-button>
+        <mat-radio-button value="2">High</mat-radio-button>
+      </mat-radio-group>
+    </div>
 
     <br />
 
     <mat-form-field>
       <mat-label>Issue Type</mat-label>
-      <mat-select>
+      <mat-select [value]="newIssue.type">
         @for (issue of issues; track issue) {
         <mat-option [value]="issue.value">{{ issue.viewValue }}</mat-option>
         }
