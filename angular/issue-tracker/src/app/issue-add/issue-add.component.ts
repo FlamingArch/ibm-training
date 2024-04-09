@@ -8,16 +8,17 @@ import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { Issue, IssuePriority, IssueType } from '../types';
+import { Location } from '@angular/common';
 import { v4 as UUID } from 'uuid';
 
 @Component({
   selector: 'app-issue-add',
   standalone: true,
   imports: [
+    FormsModule,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
-    FormsModule,
     MatFormFieldModule,
     MatInputModule,
     MatRadioModule,
@@ -27,19 +28,47 @@ import { v4 as UUID } from 'uuid';
   styleUrl: './issue-add.component.scss',
 })
 export class IssueAddComponent {
-  newIssue: Issue = {
-    issueNo: UUID(),
-    type: IssueType.Bug,
-    title: '',
-    description: '',
-    priority: IssuePriority.High,
-  };
+  issueNo = UUID();
+  title: string | null = null;
+  description: string | null = null;
+  priority: IssuePriority | null = null;
+  type: IssueType | null = null;
   issues = [
     { value: IssueType.Feature, viewValue: 'Feature' },
     { value: IssueType.Bug, viewValue: 'Bug' },
     { value: IssueType.Documentation, viewValue: 'Documentation' },
   ];
+
+  constructor(private _location: Location) {}
+
   submit() {
-    console.log(this.newIssue);
+    if (this.title == null || this.title.trim() === '') {
+      console.log('Missing Title');
+    }
+    if (this.description == null || this.description.trim() === '') {
+      console.log('Missing Description');
+    }
+    if (this.priority == null) console.log('Select a Priority');
+    if (this.type == null) console.log('Select a Issue Type');
+
+    const item = {
+      title: this.title,
+      description: this.description,
+      priority: this.priority,
+      type: this.type,
+    } as Issue;
+
+    console.log(item);
+  }
+
+  goBack() {
+    this._location.back();
+  }
+
+  clearFields() {
+    this.title = null;
+    this.description = null;
+    this.type = null;
+    this.priority = null;
   }
 }
