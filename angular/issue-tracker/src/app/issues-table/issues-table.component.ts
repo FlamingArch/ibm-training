@@ -5,17 +5,7 @@ import { Component } from '@angular/core';
 import { Issue, IssueType, IssuePriority } from '../types';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { MatToolbar } from '@angular/material/toolbar';
-
-let issueData: Issue[] = [
-  {
-    issueNo: 1,
-    type: IssueType.Bug,
-    title: 'Sample Issue',
-    description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor iusto hic quos quia, vero ullam ipsam enim quam ducimus debitis.',
-    priority: IssuePriority.High,
-  },
-];
+import { IssuesService } from '../issues.service';
 
 @Component({
   selector: 'app-issues-table',
@@ -39,6 +29,15 @@ export class IssuesTableComponent {
     'description',
     'priority',
   ];
-  issues = issueData;
-  openDialog(): void {}
+  issues = [] as Issue[];
+
+  constructor(private issuesService: IssuesService) {}
+
+  getIssues() {
+    this.issues = this.issuesService.issues;
+  }
+
+  ngOnInit() {
+    this.getIssues();
+  }
 }

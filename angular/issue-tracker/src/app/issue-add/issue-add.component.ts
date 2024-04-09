@@ -10,6 +10,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { Issue, IssuePriority, IssueType } from '../types';
 import { Location } from '@angular/common';
 import { v4 as UUID } from 'uuid';
+import { IssuesService } from '../issues.service';
 
 @Component({
   selector: 'app-issue-add',
@@ -39,26 +40,40 @@ export class IssueAddComponent {
     { value: IssueType.Documentation, viewValue: 'Documentation' },
   ];
 
-  constructor(private _location: Location) {}
+  constructor(
+    private _location: Location,
+    private issuesService: IssuesService
+  ) {}
 
   submit() {
     if (this.title == null || this.title.trim() === '') {
       console.log('Missing Title');
+      return;
     }
     if (this.description == null || this.description.trim() === '') {
       console.log('Missing Description');
+      return;
     }
-    if (this.priority == null) console.log('Select a Priority');
-    if (this.type == null) console.log('Select a Issue Type');
+    if (this.priority == null) {
+      console.log('Select a Priority');
+      return;
+    }
+    if (this.type == null) {
+      console.log('Select a Issue Type');
+      return;
+    }
 
     const item = {
+      issueNo: this.issueNo,
       title: this.title,
       description: this.description,
       priority: this.priority,
       type: this.type,
     } as Issue;
 
-    console.log(item);
+    console.debug('Adding Item: ', item);
+    this.issuesService.addItem(item);
+    this.goBack();
   }
 
   goBack() {
