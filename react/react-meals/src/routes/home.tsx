@@ -3,6 +3,7 @@ import AppBar from "../views/appbar"
 import Button from "../views/button"
 import { IconCart } from "../views/icons"
 import SectionList from "../views/list"
+import FoodItems from "../menu.json"
 
 function HomeAppBar() {
   return <AppBar title="React Meals">
@@ -15,17 +16,15 @@ function HomeAppBar() {
 }
 
 export default function PageHome() {
-  const sample_item = {
-    title: "Sushi",
-    description: "Finest Fish and Veggies",
-    price: 29.99
-  } as FoodItem
-
   return (
     <>
       <HomeAppBar />
       <SectionList.List>
-        <SectionList.Item item={sample_item} />
+        {FoodItems.map((item: FoodItem) => (
+          <SectionList.Item item={item} handleAdd={(item, count) => {
+            console.log(`TO IMPLEMENT: Add ${count} of ${item.title} to cart`)
+          }} />
+        ))}
       </SectionList.List>
     </>
   )

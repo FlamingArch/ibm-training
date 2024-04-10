@@ -9,7 +9,7 @@ type ListItemProps = { item: FoodItem, handleAdd: (item: FoodItem, quantity: num
 function ListView({ children }: ListViewProps) {
   return (
     <section className="flex justify-center p-4">
-      <ul className="flex-grow max-w-4xl p-6 bg-white rounded-2xl text-black">
+      <ul className="flex-grow max-w-4xl p-6 flex flex-col bg-white rounded-2xl text-black gap-4">
         {children}
       </ul>
     </section>
