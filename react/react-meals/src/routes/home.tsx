@@ -1,6 +1,8 @@
+import { FoodItem } from "../types"
 import AppBar from "../views/appbar"
 import Button from "../views/button"
 import { IconCart } from "../views/icons"
+import SectionList from "../views/list"
 
 function HomeAppBar() {
   return <AppBar title="React Meals">
@@ -13,12 +15,18 @@ function HomeAppBar() {
 }
 
 export default function PageHome() {
+  const sample_item = {
+    title: "Sushi",
+    description: "Finest Fish and Veggies",
+    price: 29.99
+  } as FoodItem
+
   return (
     <>
       <HomeAppBar />
-      <section>
-        
-      </section>
+      <SectionList.List>
+        <SectionList.Item item={sample_item} />
+      </SectionList.List>
     </>
   )
 }

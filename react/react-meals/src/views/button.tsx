@@ -1,14 +1,17 @@
 type ButtonProps = {
   children?: React.ReactNode
   primary?: boolean
-}
+} & React.ButtonHTMLAttributes<HTMLButtonElement>
 
-export default function Button({ children, primary }: ButtonProps) {
+export default function Button({ children, primary, ...props }: ButtonProps) {
 
-  const classes = "rounded-full py-3 px-6 flex gap-3 items-center " +
-    (primary ? "bg-red-950" : "bg-red-800")
+  const classes = ""
+    + "text-white font-semibold "
+    + "rounded-full py-3 px-6 flex gap-3 items-center transition-colors "
+    + (primary ? "bg-red-950 hover:bg-red-900" : "bg-red-800 hover:bg-red-700")
+    + " disabled:bg-gray-400 disabled:cursor-not-allowed"
 
   return (
-    <button className={classes}>{children}</button>
+    <button className={classes} {...props} >{children}</button>
   )
 }
