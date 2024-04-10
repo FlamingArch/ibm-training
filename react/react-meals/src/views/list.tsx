@@ -17,7 +17,7 @@ function ListView({ children }: ListViewProps) {
 }
 
 function ListItem({ item, handleAdd }: ListItemProps) {
-  const [count, setCount] = React.useState<number | null>(1)
+  const [count, setCount] = React.useState<number | undefined>(1)
 
   return <li className={"border-b flex justify-between pb-4 " + (item.available == 0 ? "opacity-50" : "")
   }>
@@ -34,7 +34,7 @@ function ListItem({ item, handleAdd }: ListItemProps) {
           type='number'
           className="bg-transparent border border-slate-400 rounded-lg w-16 px-2 py-1"
           value={count} onChange={e => {
-            if (e.target.value === "") setCount(null)
+            if (e.target.value === "") setCount(undefined)
             const newVal = parseInt(e.target.value)
             if (newVal <= item.available && newVal > 0)
               setCount(newVal)
