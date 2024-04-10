@@ -47,19 +47,19 @@ export class IssueAddComponent {
 
   submit() {
     if (this.title == null || this.title.trim() === '') {
-      console.log('Missing Title');
+      alert('Missing Title');
       return;
     }
     if (this.description == null || this.description.trim() === '') {
-      console.log('Missing Description');
+      alert('Missing Description');
       return;
     }
     if (this.priority == null) {
-      console.log('Select a Priority');
+      alert('Select a Priority');
       return;
     }
     if (this.type == null) {
-      console.log('Select a Issue Type');
+      alert('Select a Issue Type');
       return;
     }
 
