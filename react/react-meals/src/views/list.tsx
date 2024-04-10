@@ -17,9 +17,10 @@ function ListView({ children }: ListViewProps) {
 }
 
 function ListItem({ item, handleAdd }: ListItemProps) {
-  const [count, setCount] = React.useState(1)
+  const [count, setCount] = React.useState<number | null>(1)
 
-  return <li className="border-b flex justify-between pb-4">
+  return <li className={"border-b flex justify-between pb-4 " + (item.available == 0 ? "opacity-50" : "")
+  }>
     <div className="flex flex-col">
       <p className="text-xl font-bold">{item.title}</p>
       <p className="italic">{item.description}</p>
@@ -29,18 +30,29 @@ function ListItem({ item, handleAdd }: ListItemProps) {
       <div className="flex gap-2 items-center">
         <p className="text-lg font-semibold">Amount</p>
         <input
+          disabled={item.available == 0}
           type='number'
           className="bg-transparent border border-slate-400 rounded-lg w-16 px-2 py-1"
           value={count} onChange={e => {
+            if (e.target.value === "") setCount(null)
             const newVal = parseInt(e.target.value)
-            setCount(newVal)
+            if (newVal <= item.available && newVal > 0)
+              setCount(newVal)
           }} />
       </div>
-      <Button disabled={count < 1} onClick={() => handleAdd(item, count)}>
-        <IconAdd className="fill-white w-4 h-4" /> Add
+      <Button disabled={typeof count != "number" || count < 1 || item.available == 0} onClick={() => {
+        if (typeof count == "number" && count > 0) {
+          handleAdd(item, count)
+        }
+      }}>
+        {
+          item.available == 0
+            ? <p className='text-black'>Out of Stock</p>
+            : <><IconAdd className="fill-white w-4 h-4" /> Add</>
+        }
       </Button>
     </div>
-  </li>
+  </li >
 }
 
 const SectionList = {
