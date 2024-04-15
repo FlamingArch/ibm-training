@@ -1,12 +1,13 @@
 import express from "express";
 import productRoutes from "./routes/productsRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
+import errorHandler from "./middleware/errorMiddleware.js";
 import connectDB from "./config/db.js";
 
 const app = express();
 
 app.use(express.json());
-
+app.use(errorHandler);
 app.use(`/api/products`, productRoutes);
 app.use(`/api/user`, userRoutes);
 
