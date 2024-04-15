@@ -3,23 +3,23 @@ import { useNavigate, useParams } from "react-router-dom"
 import IProduct from "../model/product"
 import httpClient from "../apiClient/httpClient"
 
-export const ProductDetails:FC<any>=()=>{
+export const ProductDetails: FC<any> = () => {
 
-    const{id}=useParams<string>()// react hook that will help us to read path parameter... it will give the id
+    const { id } = useParams<string>()// react hook that will help us to read path parameter... it will give the id
 
-    const  [product,setProduct]= useState<IProduct>({} as IProduct) //{} initializing with an empty oject
+    const [product, setProduct] = useState<IProduct>({} as IProduct) //{} initializing with an empty oject
 
-    const getProductById= useCallback(async()=>{  
-        const response =await httpClient.getById('http://localhost:4200/products',Number(id)) //converting id to number
+    const getProductById = useCallback(async () => {
+        const response = await httpClient.getById('http://localhost:9999/api/products', Number(id)) //converting id to number
         setProduct(response)
 
-        },[]) 
+    }, [])
 
-        useEffect(()=>{
-            getProductById()
-        },[])
+    useEffect(() => {
+        getProductById()
+    }, [])
 
-        const navigator = useNavigate()
+    const navigator = useNavigate()
     return (
         <div className="card-body">
             <div className="row">
@@ -37,7 +37,7 @@ export const ProductDetails:FC<any>=()=>{
             <div className="row">
                 <div className="col-md-3">Rating</div>
                 <div className="col-md-6">{product.starRating}</div>
-            {/* </div>
+                {/* </div>
             <div className="row">
                 <button>Back</button>
                 <button>{`Edit ${product.productName}`}</button> */}
@@ -45,10 +45,10 @@ export const ProductDetails:FC<any>=()=>{
             </div>
             <div className="row">
                 <div className="col-2">
-                <button className="btn btn-info btn-block" onClick={()=>navigator('/products')}>Back</button>
+                    <button className="btn btn-info btn-block" onClick={() => navigator('/products')}>Back</button>
                 </div>
                 <div className="col-2">
-                <button className="btn btn-info btn-block" onClick={()=>navigator(`/products/${product.productId}/edit`)}>{`Edit ${product.productName}`}</button>
+                    <button className="btn btn-info btn-block" onClick={() => navigator(`/products/${product.productId}/edit`)}>{`Edit ${product.productName}`}</button>
                 </div>
             </div>
 
