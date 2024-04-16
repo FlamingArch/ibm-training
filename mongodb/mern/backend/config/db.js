@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
-let username = "admin1234"; // process.env.MONGODB_USERNAME;
-let password = "admin1234"; // process.env.MONGODB_PASSWORD;
+let username = "admin123"; // process.env.MONGODB_USERNAME;
+let password = "adminpass123"; // process.env.MONGODB_PASSWORD;
 
 const URI = `mongodb+srv://${username}:${password}@mern-cluster.bgh2jkj.mongodb.net/?retryWrites=true&w=majority&appName=MERN-Cluster`;
 
