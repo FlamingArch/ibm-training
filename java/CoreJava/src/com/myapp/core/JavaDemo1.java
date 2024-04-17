@@ -9,6 +9,9 @@ public class JavaDemo1 {
 		System.out.println("Welcome to the world of Java!");
 		display(new Rectangle(23.4, 234.5));
 		display(new Triangle(23.4, 234.5));
+		
+		// display("");	// Invalid argument: Type Mismatch
+		// display(new Shape(34,23)) // Can't create an instance of an abstract class
 	}
 
 }
