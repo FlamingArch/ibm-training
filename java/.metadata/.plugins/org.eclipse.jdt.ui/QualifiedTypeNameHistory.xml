@@ -1,2 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="com.myapp.core.BusinessLoanValidator"/>
+    <fullyQualifiedTypeName name="com.myapp.core.PersonalLoanValidator"/>
+    <fullyQualifiedTypeName name="java.util.stream.Stream"/>
+    <fullyQualifiedTypeName name="com.myapp.core.Product"/>
+</qualifiedTypeNameHistroy>
