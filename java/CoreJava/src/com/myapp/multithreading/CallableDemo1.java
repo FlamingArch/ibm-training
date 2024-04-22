@@ -8,7 +8,7 @@ import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class CallableDemo2 {
+public class CallableDemo1 {
 
 	public static void main(String[] args) {
 		Callable<Integer> callable = () -> {
@@ -20,16 +20,16 @@ public class CallableDemo2 {
 			return count;
 		};
 		
-		ScheduledExecutorService scheduledExecutors = Executors.newScheduledThreadPool(10);
-		Future<Integer> scheduledFuture = scheduledExecutors.schedule(callable, 500, TimeUnit.MILLISECONDS);
-
+		ExecutorService executors = Executors.newScheduledThreadPool(10);
+		Future<Integer> future = executors.submit(callable);
+		
 		try {
-			Integer value = scheduledFuture.get();
+			Integer value = future.get();
 			System.out.println("Value, " + value);
 		} catch (InterruptedException | ExecutionException e) {
 			e.printStackTrace();
 		}
-		scheduledExecutors.shutdown();
+		executors.shutdown();
 	}
 
 }

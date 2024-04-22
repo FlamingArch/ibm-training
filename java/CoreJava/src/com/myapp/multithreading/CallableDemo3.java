@@ -8,7 +8,7 @@ import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class CallableDemo2 {
+public class CallableDemo3 {
 
 	public static void main(String[] args) {
 		Callable<Integer> callable = () -> {
