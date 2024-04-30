@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: spring-boot-mongodb-demo-5
+  data:
+    mongodb:
+      uri: mongodb+srv://admin1234:admin1234@mern-cluster.bgh2jkj.mongodb.net/merndb?retryWrites=true&w=majority&appName=MERN-Cluster
+server:
+  port: 9080
