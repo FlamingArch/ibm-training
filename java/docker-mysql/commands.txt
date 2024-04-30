@@ -1,0 +1,9 @@
+Docker compose up
+docker compose exec -it db /bin/bash
+
+# Changed to Bin/Bash
+mysql -u root -p 
+#Password: pass
+
+# Changed to mysql cli
+use cloudfsd
